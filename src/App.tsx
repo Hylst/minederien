@@ -297,6 +297,31 @@ function RulesModal({ onClose }: { onClose: () => void }) {
 }
 
 /* ════════════════════════════════════════════════════════════════
+   INFO MODAL
+   ════════════════════════════════════════════════════════════════ */
+
+function InfoModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4" onClick={onClose}>
+      <div className="glass anim-bounce-in w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+        <div className="p-5 max-h-[70vh] overflow-y-auto text-sm text-zinc-300 space-y-3">
+          <h3 className="text-lg font-bold text-white">Comment ce jeu a été fait</h3>
+          <p><strong className="text-white">Stack :</strong> React 19, TypeScript 5.9, Tailwind CSS 4, Vite 7, compilé en un seul fichier HTML, aucune dépendance chargée depuis l'extérieur.</p>
+          <p><strong className="text-white">Graphismes :</strong> pas de Canvas, la grille est une grille CSS de cellules HTML colorées selon leur état, avec des animations d'apparition et de secousse à l'explosion.</p>
+          <p><strong className="text-white">Musique &amp; sons :</strong> synthétisés en direct avec l'API Web Audio, aucun fichier audio chargé.</p>
+          <p><strong className="text-white">Interactions :</strong> clic gauche pour révéler, clic droit pour marquer un drapeau, clic sur un chiffre déjà révélé pour ouvrir automatiquement ses voisins si le compte de drapeaux correspond (chording, technique classique du démineur). Bascule tactile dédiée sur mobile où le clic droit n'existe pas.</p>
+          <p><strong className="text-white">Architecture :</strong> le plateau est un tableau 2D régénéré à chaque vague, la difficulté (dimensions et densité de mines) calculée par une formule qui progresse avec le numéro de vague plutôt que par des paliers fixes.</p>
+          <p><strong className="text-white">Algorithmes notables :</strong> propagation en cascade des cases vides (une cellule sans mine voisine révèle automatiquement ses voisines, de proche en proche), notation en étoiles basée sur un temps de référence qui augmente avec la vague, 6 pouvoirs à effets variés (passifs ou ciblés au clic) piochés au choix entre chaque vague.</p>
+        </div>
+        <div className="border-t border-white/10 p-4 text-center">
+          <button onClick={onClose} className="rounded-lg bg-zinc-700 px-6 py-2 text-sm text-zinc-300 hover:bg-zinc-600 transition">Fermer</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ════════════════════════════════════════════════════════════════
    WAVE COMPLETE MODAL
    ════════════════════════════════════════════════════════════════ */
 
@@ -391,6 +416,7 @@ export default function App() {
   const [volume, setVolume] = useState(50);
   const [showSettings, setShowSettings] = useState(false);
   const [showRules, setShowRules] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   const [onboardStep, setOnboardStep] = useState(0);
   const [frozen, setFrozen] = useState(false);
   const [shieldActive, setShieldActive] = useState(false);
@@ -855,6 +881,7 @@ export default function App() {
       {phase === "waveComplete" && <WaveCompleteModal wave={wave} time={time} score={score} comboMax={comboMax} choices={waveChoices} onPick={t => { if (!pickedChoice) { setInventory(inv => [...inv, t]); setPickedChoice(true); playPowerUpPickup(); } }} onNext={startNextWave} />}
       {phase === "gameOver" && <GameOverModal wave={wave} score={score} onRestart={restartGame} />}
       {showRules && <RulesModal onClose={() => setShowRules(false)} />}
+      {showInfo && <InfoModal onClose={() => setShowInfo(false)} />}
 
       {/* Main layout */}
       <div className="relative z-10 mx-auto flex min-h-screen flex-col items-center gap-3 p-3 sm:gap-4 sm:p-4">
@@ -898,6 +925,8 @@ export default function App() {
             className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-base text-zinc-400 hover:bg-white/10 transition">📜</button>
           <button onClick={() => { setOnboardStep(0); setPhase("onboarding"); }} title="Tutoriel"
             className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-base text-zinc-400 hover:bg-white/10 transition">❓</button>
+          <button onClick={() => setShowInfo(true)} title="Comment ce jeu a été fait"
+            className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-base text-zinc-400 hover:bg-white/10 transition">ℹ️</button>
         </div>
 
         {/* Settings */}
