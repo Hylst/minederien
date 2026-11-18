@@ -26,5 +26,5 @@ clin d'œil discret et pas prétentieux — exactement l'esprit du jeu.
 
 ## Contact
 
-- Email : geoffroy.streit@gmail.com
+- Email : geoffroy.streit@ik.me
 - Plateforme : [games.hylst.fr](https://games.hylst.fr/)
