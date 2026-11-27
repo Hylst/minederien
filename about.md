@@ -6,7 +6,7 @@
 ## Le jeu
 
 Le démineur classique, mais qui ne s'arrête jamais : chaque grille terminée en ouvre une plus
-grande, avec plus de mines, et un pouvoir à débloquer parmi six (bouclier, scanner, démineur,
+grande, avec plus de mines, et un pouvoir à choisir parmi six (bouclier, scanner, démineur,
 radar, gel du temps, indice). Des bonus cachés (étoiles, gemmes, éclairs de combo) récompensent
 la prise de risque.
 

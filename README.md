@@ -1,6 +1,6 @@
 # Mine de Rien
 
-**Un démineur qui monte en vagues, avec des pouvoirs à débloquer.**
+**Un démineur qui monte en vagues, avec des pouvoirs à choisir.**
 
 Joue ici : [games.hylst.fr/minederien/](https://games.hylst.fr/minederien/)
 
